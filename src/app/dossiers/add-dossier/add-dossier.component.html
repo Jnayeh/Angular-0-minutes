@@ -1,0 +1,64 @@
+
+<div *ngIf="!visible"  class="container-fluid rounded">
+    <h1>consultaions</h1>
+    <app-list-consultations></app-list-consultations>
+    <div class="form-row">
+        <div class="col-md-12 mb-3"></div>
+    </div>
+</div>
+
+<div class="mat-elevation-z8">
+    <div class="wrapper">
+        
+        <div class="container rounded">
+
+            <form  class="was-validated">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3"></div>
+                        <div class="form-group" class="col-md-4 mb-3">
+                            <mat-label>Patient</mat-label>
+                            <mat-select id="type"  #patient="ngModel" [(ngModel)]="patient_" class="form-control" (selectionChange)="findPatId(patient_)" required name="patient">
+                                <mat-option *ngFor="let patient of patients" value="{{patient.id}}" >{{patient.nom}} {{patient.prenom}}</mat-option>
+                            </mat-select>
+                            <div  *ngIf="patient.invalid && ( patient.touched || patient.dirty )" class="alert alert-danger"> Le patient est obligatoire </div>
+                        </div>
+                    <div class="col-md-4 mb-3"></div>
+                </div>
+                
+    
+                <div class="form-row">
+                    <div class="col-md-5 mb-3"></div>
+    
+                    <button *ngIf="visible" 
+                    mat-raised-button color="primary"
+                    label="Ajouter" 
+                    class="col-md-2 mb-3"
+                    (click)="ajouter()" 
+                    [routerLink]="['/list-dossiers']"
+                    size="30" 
+                    [disabled]="patient.invalid">
+                    Ajouter
+                    </button>
+    
+                    <button *ngIf="!visible" 
+                    mat-raised-button color="warn"
+                    class="col-md-2 mb-3"
+                    label="Modifier" 
+                    (click)="modifier()" 
+                    size="30" 
+                    [disabled]="patient.invalid ">
+                    Modifier
+                    </button>
+                    <div class="col-md-5 mb-3"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <div class="mat-elevation-z8" style="text-align: center;">
+        <div class="container rounded">
+            {{message}}
+        </div>
+        
+    </div>

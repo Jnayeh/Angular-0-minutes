@@ -1,0 +1,45 @@
+table {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+  }
+  .mat-header-cell{
+    text-align: center;
+  }
+  td, th {
+    width: 16%;
+    text-align: center;
+  }
+  a:hover {
+    text-decoration: none;
+}
+
+.mat-sort-header{
+    text-align: center;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

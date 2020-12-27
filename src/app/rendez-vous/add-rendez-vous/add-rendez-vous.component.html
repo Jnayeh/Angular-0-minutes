@@ -1,0 +1,99 @@
+<div class="mat-elevation-z8">
+    <div class="wrapper">
+            <form  >
+                <div>
+                <div class="form-group">
+                    <label>maladie</label>
+                    <input type="text" class="form-control" placeholder="Quel est votre maladie ?" [(ngModel)]="rdv.maladie" name="maladie" #maladie="ngModel" required size="30">
+                    <div *ngIf="maladie.invalid && ( maladie.touched || maladie.dirty )" class="alert alert-danger"> Le maladie est obligatoire </div>
+                </div>
+    
+                <div class="form-group">
+                    <label>Détails</label>
+                    <textarea class="form-control" placeholder="Plus détails s'il vous plait" [(ngModel)]="rdv.detail" name="detail" #detail="ngModel" size="30"></textarea>
+                </div>
+                </div>
+
+                <div class="form-row" [hidden]="!visible">
+                    <div class="form-group" class="col-md-3 mb-3">
+                        <mat-label>Spécialité</mat-label>
+                        <mat-select   #speciality="ngModel" [(ngModel)]="special" (selectionChange)="findMedecinsparspeciality(special)" required name="Speciality">
+                            <mat-option *ngFor="let speciality of specialities" value="{{speciality}}" >{{speciality}}</mat-option>
+                        </mat-select>
+                        <div  *ngIf="speciality.invalid && ( speciality.touched || speciality.dirty )" class="alert alert-danger"> La spécialité est obligatoire </div>
+                    </div>
+                    <div class="col-md-1 mb-3"></div>
+                    <div class="form-group" class="col-md-4 mb-3">
+                        <mat-label>Médecin</mat-label>
+                        <mat-select id="type"  #medecin="ngModel" [(ngModel)]="medecin_id" (selectionChange)="findMedId(medecin_id)" class="form-control" [disabled]="speciality.value==''" required name="medecin">
+                            <mat-option *ngFor="let medecin of medecinsparspeciality;" value="{{medecin.id}}" [disabled]="speciality.value==''">{{medecin.nom}} {{medecin.prenom}}</mat-option>
+                        </mat-select>
+                        <div  *ngIf="medecin.invalid && ( medecin.touched || medecin.dirty )" class="alert alert-danger"> Le Médecin est obligatoire </div>
+                    </div>
+                    <div class="col-md-1 mb-3"></div>
+    
+                    <div class="form-group" class="col-md-3 mb-3">
+                        <mat-label>Patient</mat-label>
+                        <mat-select id="type"  #patient="ngModel" [(ngModel)]="patient_id" class="form-control" (selectionChange)="findPatId(patient_id)" required name="patient">
+                            <mat-option *ngFor="let patient of patients" value="{{patient.id}}" >{{patient.nom}} {{patient.prenom}}</mat-option>
+                        </mat-select>
+                        <div  *ngIf="patient.invalid && ( patient.touched || patient.dirty )" class="alert alert-danger"> Le patient est obligatoire </div>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="col-md-2 mb-3"></div>
+
+                    <div class="form-group" class="col-md-4 mb-3">
+                        <label>Date du rendez-vous</label>
+                        <input type="date" class="form-control" size="30" placeholder="La date du rendez-vous s'il vous plait" [(ngModel)]="rdv.date" name="date" #date="ngModel" required>
+                        <div *ngIf="date.invalid && ( date.touched || date.dirty )"  class="alert alert-danger"> Taper date S.V.P </div>
+                    </div>
+                    
+                    <div class="form-group"class="col-md-4 mb-3">
+                        <label>Temps du rendez-vous</label>
+                        <input type="time"  class="form-control" placeholder="A quelle heure?" [(ngModel)]="rdv.time" name="time" #time="ngModel" required>
+                        <div  *ngIf="time.invalid && ( time.touched || time.dirty )" class="alert alert-danger"> Le temps est obligatoire </div>
+                    </div>
+
+                    <div class="col-md-2 mb-3"></div>
+                </div>
+
+                
+    
+                
+                <div class="form-row">
+                    <div class="col-md-5 mb-3"></div>
+                    
+                    <button *ngIf="visible" 
+                    mat-raised-button color="primary"
+                    label="Ajouter" 
+                    class="col-md-2 mb-3"
+                    (click)="ajouter()" 
+                    size="30" 
+                    [disabled]="maladie.invalid || detail.invalid || time.invalid || date.invalid || medecin.invalid || patient.invalid">
+                    Ajouter
+                    </button>
+
+                    <button *ngIf="!visible" 
+                    mat-raised-button color="warn"
+                    class="col-md-2 mb-3"
+                    label="Modifier" 
+                    (click)="modifier()" 
+                    size="30" 
+                    [disabled]="maladie.invalid || detail.invalid || time.invalid || date.invalid ">
+                    Modifier
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="mat-elevation-z8" style="text-align: center;">
+        <div class="container rounded">
+            {{message}}
+        </div>
+        
+    </div>

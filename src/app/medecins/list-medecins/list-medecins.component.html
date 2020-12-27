@@ -1,0 +1,74 @@
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="medecins" >
+        
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let medecin"> {{medecin.id}} </td>
+      </ng-container>
+  
+      <!-- Adresse Column -->
+      <ng-container matColumnDef="adresse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
+        <td mat-cell *matCellDef="let medecin"> {{medecin.adresse}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let medecin">{{medecin.nom}} {{medecin.prenom}}</td>
+      </ng-container>
+
+      <!-- Username Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+        <td mat-cell *matCellDef="let medecin">{{medecin.username}} </td>
+      </ng-container>
+
+      <!-- Speciality Column -->
+      <ng-container matColumnDef="speciality">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Speciality </th>
+        <td mat-cell *matCellDef="let medecin">{{medecin.speciality}}</td>
+      </ng-container>
+  
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let medecin" >{{medecin.email}}</td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="actions" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <td mat-cell *matCellDef="let medecin" >
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <div class="example-button-container">
+                    <a mat-mini-fab color="primary" aria-label="Edit icon" [routerLink]="['edit-medecin',medecin.id]">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <button mat-mini-fab color="warn" aria-label="Remove icon" (click)="supprimer(medecin)" >
+                        <mat-icon>remove_circle</mat-icon>
+                    </button>
+                </div>
+                
+            </div>
+            </div>
+            
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      
+    </table>
+  
+  </div>
+
+    <div style="float: right; margin:20px">
+        <a mat-raised-button color="warn" [routerLink]="['new-medecin']"><span class="material-icons">
+            add_circle
+            </span> ADD MEDICIN</a>
+    </div>

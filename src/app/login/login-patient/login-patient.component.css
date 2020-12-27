@@ -1,0 +1,113 @@
+/*li,body{background: url('../assets/login.png') no-repeat center center fixed;}*/
+
+html,body{
+    
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-position: fixed;
+    font-family: 'Numans', sans-serif;
+    background-image: url('/assets/4.jpg');
+    }
+    header{
+        height: 100vh;
+        opacity: 0.8;
+        
+        background-size: cover;
+        background-position: center center;
+        background-position: fixed;
+    }
+    
+    .container{
+    height: 100%;
+    align-content: center;
+    }
+    
+    .card{
+    margin:30vh 30vw;
+    height: 300px;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.2) !important;
+    }
+    
+    
+    
+    .card-header h3{
+    color: white;
+    }
+    
+    
+    
+    .input-group-prepend span{
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border:0 !important;
+    }
+    
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+    
+    }
+    
+    .remember{
+    color: white;
+    }
+    
+    .remember input
+    {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    }
+    
+    .login_btn{
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+    }
+    
+    .login_btn:hover{
+    color: wheat;
+    background-color: white;
+    }
+    
+    .links{
+    color: white;
+    }
+    
+    .links a{
+    margin-left: 4px;
+    }
+    
+/*animation text (ominutes)*/
+.text-area{
+    padding-left: 40%;
+    font-size: 40px;
+    font-family: roboto;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.text-area span{
+    color: brown;
+    opacity: 0;
+    transform: rotate(360deg) scale(0);
+    animation: animate 5s forwards;
+}
+.text-area span{display: inline-block;}
+.text-area span:nth-of-type(2){animation-delay: .1s;}
+.text-area span:nth-of-type(3){animation-delay: .2s;}
+.text-area span:nth-of-type(4){animation-delay: .3s;}
+.text-area span:nth-of-type(5){animation-delay: .4s;}
+.text-area span:nth-of-type(6){animation-delay: .5s;}
+.text-area span:nth-of-type(7){animation-delay: .6s;}
+.text-area span:nth-of-type(8){animation-delay: .7s;}
+
+@keyframes animate{
+    30%{transform: translate(0,0px) rotate(180deg) scale(1);}
+    60%{transform: translate(0,20px) rotate(0deg) scale(.8);}
+    100%{transform: translate(0) rotate(0deg) scale(1); opacity: 1;}
+}

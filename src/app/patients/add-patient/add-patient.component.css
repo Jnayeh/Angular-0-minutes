@@ -1,0 +1,27 @@
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.wrapper {
+  margin: 4vw 0vw;
+  padding: 5% ;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.mat-elevation-z8{
+  margin: 0% 20%;
+  width: 60%;
+}
+.n{
+    width: 46%;
+    float: left;
+}
+.pren{
+  width: 46%;
+  float: right;
+}
+
+form{
+width: 100%;
+}
