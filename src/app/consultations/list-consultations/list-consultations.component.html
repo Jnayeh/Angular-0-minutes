@@ -1,71 +1,95 @@
-<table mat-table [dataSource]="consultaions" >
+
+    <!--table mat-table [dataSource]="consultations" >
     
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-    <td mat-cell *matCellDef="let consultaion"> {{consultaion.id}} </td>
-    </ng-container>
-
-    <!-- Maladie Column -->
-    <ng-container matColumnDef="maladie">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> maladie </th>
-        <td mat-cell *matCellDef="let consultaion">{{consultaion.maladie}} </td>
-      </ng-container>
-      
-      <!-- Treatment Column -->
-      <ng-container matColumnDef="treatment">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> trétement </th>
-        <td mat-cell *matCellDef="let consultaion" >{{consultaion.treatement}}</td>
-      </ng-container>
-      
-      <!-- Detail Column -->
-      <ng-container matColumnDef="details">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> détails </th>
-        <td mat-cell *matCellDef="let consultaion" >{{consultaion.details}}</td>
-      </ng-container>
-
-    <!-- Medecin Column -->
-    <ng-container matColumnDef="medecin">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> medecin </th>
-        <td mat-cell *matCellDef="let consultaion" >{{consultaion.medecinConsult.nom}} {{consultaion.medecinConsult.prenom }}</td>
-        </ng-container>
-
-    <!-- Patient Column -->
-    <ng-container matColumnDef="patient">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient </th>
-        <td mat-cell *matCellDef="let consultaion" >{{consultaion.patientC.nom}} {{consultaion.patientC.prenom }}</td>
-        </ng-container>
-
-    <!-- Action Column -->
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-        <td mat-cell *matCellDef="let consultaion" >
-            <div class="example-button-row">
-                <div class="example-flex-container">
-                    <div class="example-button-container">
-                        <a mat-mini-fab color="primary" aria-label="Edit icon" [routerLink]="['edit-consultation',consultaion.id]">
-                            <mat-icon>edit</mat-icon>
-                        </a>
-                        <button mat-mini-fab color="warn" aria-label="Remove icon" (click)="supprimer(consultaion)" >
-                            <mat-icon>remove_circle</mat-icon>
-                        </button>
-                    </div>
-                    
-                </div>
-            </div>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-</table>
-
-
-
-<div align="end" style="margin:20px">
-    <a mat-mini-fab color="warn" aria-label="Add icon" [routerLink]="['new-consultaion']" >
         
-        <mat-icon> add_circle</mat-icon>
-    </a>
-</div>
+        <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let consultation"> {{consultation.id}} </td>
+        </ng-container>
+    
+        
+        <ng-container matColumnDef="maladie">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> maladie </th>
+            <td mat-cell *matCellDef="let consultation">{{consultation.maladie}} </td>
+          </ng-container>
+          
+          
+          <ng-container matColumnDef="treatment">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> trétement </th>
+            <td mat-cell *matCellDef="let consultation" >{{consultation.treatement}}</td>
+          </ng-container>
+          
+          
+          <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> détails </th>
+            <td mat-cell *matCellDef="let consultation" >{{consultation.details}}</td>
+          </ng-container>
+    
+        
+        <ng-container matColumnDef="medecin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> medecin </th>
+            <td mat-cell *matCellDef="let consultation" >{{consultation.medecinConsult.nom}} {{consultation.medecinConsult.prenom }}</td>
+            </ng-container>
+    
+        
+        <ng-container matColumnDef="patient">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient </th>
+            <td mat-cell *matCellDef="let consultation" >{{consultation.patientC.nom}} {{consultation.patientC.prenom }}</td>
+            </ng-container>
+    
+        
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+            <td mat-cell *matCellDef="let consultation" >
+                <div class="example-button-row">
+                    <div class="example-flex-container">
+                        <div class="example-button-container">
+                            <a mat-mini-fab color="primary" aria-label="Edit icon" [routerLink]="['edit-consultation',consultation.id]">
+                                <mat-icon>edit</mat-icon>
+                            </a>
+                            <button mat-mini-fab color="warn" aria-label="Remove icon" (click)="supprimer(consultation.id)" >
+                                <mat-icon>remove_circle</mat-icon>
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table-->
+    
+    <div class="mat-elevation-z8" >
+
+        <div style="display: flex;  flex-wrap: wrap;">
+          <div class="card" *ngFor="let consultation of consultations">
+            <h3 class="card-header"><strong>Consultation {{consultation.id}}</strong> </h3>
+            <div class="card-body">
+              <h3 class="card-title"><strong>Patient: </strong> {{consultation.patientC.nom}} {{consultation.patientC.prenom }}</h3>
+              <h3 class="card-title"><strong>Medecin: </strong> {{consultation.medecinConsult.nom}} {{consultation.medecinConsult.prenom }} </h3>
+              <h4 class="card-title"><strong>Maladie: </strong> {{consultation.maladie}} </h4>
+              <h4 class="card-title"><strong>Trétement: </strong> {{consultation.treatement}}</h4>
+              <p class="card-text"><strong>Détails: </strong> {{consultation.details}}</p>
+              
+              <a  mat-button color="primary" [routerLink]="['edit-consultation',consultation.id]">
+                <mat-icon>edit</mat-icon> Modifier
+              </a>
+              
+              <a mat-icon-button color="warn" aria-label="anuuler" (click)="supprimer(consultation.id)" >
+                <mat-icon>remove_circle</mat-icon>Supprimer
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    <div style="margin:20px 10%" align=end>
+        <button mat-raised-button  [routerLink]="['new-consultation']" ><span class="material-icons">
+            add_circle
+            </span> ADD Consultation 
+        </button>
+    </div>

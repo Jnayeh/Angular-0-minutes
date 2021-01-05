@@ -1,5 +1,7 @@
-<div class="mat-elevation-z8">
-    <div class="wrapper">
+<body>
+    <app-patient-paging></app-patient-paging>
+    <div class="mat-elevation-z8">
+        <div class="wrapper card">
             <form  >
                 <div>
                 <div class="form-group">
@@ -15,15 +17,16 @@
                 </div>
 
                 <div class="form-row" [hidden]="!visible">
-                    <div class="form-group" class="col-md-3 mb-3">
+                    <div class="col-md-1 mb-3"></div>
+                    <div class="form-group" class="col-md-5 mb-3">
                         <mat-label>Spécialité</mat-label>
                         <mat-select   #speciality="ngModel" [(ngModel)]="special" (selectionChange)="findMedecinsparspeciality(special)" required name="Speciality">
                             <mat-option *ngFor="let speciality of specialities" value="{{speciality}}" >{{speciality}}</mat-option>
                         </mat-select>
                         <div  *ngIf="speciality.invalid && ( speciality.touched || speciality.dirty )" class="alert alert-danger"> La spécialité est obligatoire </div>
                     </div>
-                    <div class="col-md-1 mb-3"></div>
-                    <div class="form-group" class="col-md-4 mb-3">
+                    
+                    <div class="form-group" class="col-md-5 mb-3">
                         <mat-label>Médecin</mat-label>
                         <mat-select id="type"  #medecin="ngModel" [(ngModel)]="medecin_id" (selectionChange)="findMedId(medecin_id)" class="form-control" [disabled]="speciality.value==''" required name="medecin">
                             <mat-option *ngFor="let medecin of medecinsparspeciality;" value="{{medecin.id}}" [disabled]="speciality.value==''">{{medecin.nom}} {{medecin.prenom}}</mat-option>
@@ -31,14 +34,6 @@
                         <div  *ngIf="medecin.invalid && ( medecin.touched || medecin.dirty )" class="alert alert-danger"> Le Médecin est obligatoire </div>
                     </div>
                     <div class="col-md-1 mb-3"></div>
-    
-                    <div class="form-group" class="col-md-3 mb-3">
-                        <mat-label>Patient</mat-label>
-                        <mat-select id="type"  #patient="ngModel" [(ngModel)]="patient_id" class="form-control" (selectionChange)="findPatId(patient_id)" required name="patient">
-                            <mat-option *ngFor="let patient of patients" value="{{patient.id}}" >{{patient.nom}} {{patient.prenom}}</mat-option>
-                        </mat-select>
-                        <div  *ngIf="patient.invalid && ( patient.touched || patient.dirty )" class="alert alert-danger"> Le patient est obligatoire </div>
-                    </div>
 
                 </div>
 
@@ -73,7 +68,7 @@
                     class="col-md-2 mb-3"
                     (click)="ajouter()" 
                     size="30" 
-                    [disabled]="maladie.invalid || detail.invalid || time.invalid || date.invalid || medecin.invalid || patient.invalid">
+                    [disabled]="maladie.invalid || detail.invalid || time.invalid || date.invalid || medecin.invalid ">
                     Ajouter
                     </button>
 
@@ -97,3 +92,4 @@
         </div>
         
     </div>
+</body>

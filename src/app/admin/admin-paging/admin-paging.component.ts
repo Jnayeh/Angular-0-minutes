@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-paging',
@@ -8,13 +8,22 @@ import { Router } from '@angular/router';
 })
 export class AdminPagingComponent implements OnInit {
   token: string;
+  id: any;
 
-  constructor(public router: Router) { }
+  constructor(
+    public router: Router,
+    private activatedRoute: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
     this.router;
     this.token=localStorage.getItem('token');
-    console.log(this.token);
+    //console.log(this.token);
+    this.id = this.activatedRoute.snapshot.params["id"] ;
+  }
+  deconnecter(){
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
 }

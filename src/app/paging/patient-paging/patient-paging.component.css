@@ -1,0 +1,14 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.mat-elevation-z6{
+    font-size: 20px;
+    height: 40px; 
+}
+.container-fluid {
+    margin: 2%;
+    width: 96%;
+}
+a:hover {
+    text-decoration: none;
+}

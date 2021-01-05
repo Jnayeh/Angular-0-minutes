@@ -1,159 +1,48 @@
+<body>
+  <app-medecin-paging></app-medecin-paging>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Rendez-vous non validés">
+      <div class="mat-elevation-z8" >
 
-  <div class="mat-elevation-z8">
-    <h2>Rendez-vous non validés</h2>
-      <table mat-table [dataSource]="rdvs" >
-          
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-          <td mat-cell *matCellDef="let rdv"> {{rdv.id}} </td>
-        </ng-container>
-    
-        <!-- patient Column -->
-        <ng-container matColumnDef="patient">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> patient </th>
-          <td mat-cell *matCellDef="let rdv">{{rdv.patient.nom}} {{rdv.patient.prenom}}</td>
-        </ng-container>
-
-        <!-- medecin Column -->
-        <ng-container matColumnDef="medecin">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> medecin </th>
-          <td mat-cell *matCellDef="let rdv">{{rdv.medecin.nom}} {{rdv.medecin.prenom}}</td>
-        </ng-container>
-
-        <!-- maladie Column -->
-        <ng-container matColumnDef="maladie">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> maladie </th>
-          <td mat-cell *matCellDef="let rdv">{{rdv.maladie}} </td>
-        </ng-container>
-        
-        <!-- date Column -->
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> date </th>
-          <td mat-cell *matCellDef="let rdv"> {{rdv.date}} </td>
-        </ng-container>
-
-        <!-- time Column -->
-        <ng-container matColumnDef="time">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> time </th>
-          <td mat-cell *matCellDef="let rdv" >{{rdv.time}}</td>
-        </ng-container>
-    
-        <!-- detail Column -->
-        <ng-container matColumnDef="detail">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> detail </th>
-          <td mat-cell *matCellDef="let rdv" >{{rdv.detail}}</td>
-        </ng-container>
-
-        <!-- Action Column -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-          <td mat-cell *matCellDef="let rdv" >
-              <div class="example-button-row">
-                  <div class="example-flex-container">
-                      <div class="example-button-container">
-                          <a mat-mini-fab color="primary" aria-label="Modifier" [routerLink]="['edit-rendez-vous',rdv.id]">
-                              <mat-icon>edit</mat-icon>
-                          </a>
-                          <a mat-mini-fab color="primary" aria-label="Verifier" (click)="verifier(rdv)">
-                            Verif
-                          </a>
-                          <button mat-icon-button color="warn" aria-label="anuuler" (click)="supprimer(rdv)" >
-                              <mat-icon>remove_circle</mat-icon>anuuler
-                          </button>
-                      </div>
-                      
-                  </div>
-              </div>
+        <div style="display: flex;  flex-wrap: wrap;">
+          <div class="card" *ngFor="let rdv of rdvs">
+            <h3 class="card-header"><strong>Rendez-vous {{rdv.id}}</strong> </h3>
+            <div class="card-body">
+              <h3 class="card-title"><strong>Patient: </strong> {{rdv.patient.nom}} {{rdv.patient.prenom}}</h3>
+              <h3 class="card-title"><strong>Medecin: </strong> {{rdv.medecin.nom}} {{rdv.medecin.prenom}}</h3>
+              <h4 class="card-title"><strong>Maladie: </strong> {{rdv.maladie}} </h4>
+              <h4 class="card-title"><strong>Date: </strong> {{rdv.date}} {{rdv.time}}</h4>
+              <p class="card-text"><strong>Détails: </strong> {{rdv.detail}}</p>
               
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    
-        
-      </table>
-    
-  </div>
-
-  <div style="margin:20px" align=end>
-      <a mat-raised-button color="warn" [routerLink]="['new-rendez-vous']"><span class="material-icons">
-          add_circle
-          </span> ADD RENDEZ-VOUS</a>
-  </div>
-
-<div class="mat-elevation-z8">
-  <h2>Rendez-vous validés</h2>
-    <table mat-table [dataSource]="rdvs_verif" >
-        
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let rdv"> {{rdv.id}} </td>
-      </ng-container>
-  
-      <!-- patient Column -->
-      <ng-container matColumnDef="patient">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> patient </th>
-        <td mat-cell *matCellDef="let rdv">{{rdv.patient.nom}} {{rdv.patient.prenom}}</td>
-      </ng-container>
-
-      <!-- medecin Column -->
-      <ng-container matColumnDef="medecin">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> medecin </th>
-        <td mat-cell *matCellDef="let rdv">{{rdv.medecin.nom}} {{rdv.medecin.prenom}}</td>
-      </ng-container>
-
-      <!-- maladie Column -->
-      <ng-container matColumnDef="maladie">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> maladie </th>
-        <td mat-cell *matCellDef="let rdv">{{rdv.maladie}} </td>
-      </ng-container>
-      
-      <!-- date Column -->
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> date </th>
-        <td mat-cell *matCellDef="let rdv"> {{rdv.date}} </td>
-      </ng-container>
-
-      <!-- time Column -->
-      <ng-container matColumnDef="time">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> time </th>
-        <td mat-cell *matCellDef="let rdv" >{{rdv.time}}</td>
-      </ng-container>
-  
-      <!-- detail Column -->
-      <ng-container matColumnDef="detail">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> detail </th>
-        <td mat-cell *matCellDef="let rdv" >{{rdv.detail}}</td>
-      </ng-container>
-
-      <!-- Action Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-        <td mat-cell *matCellDef="let rdv" >
-            <div class="example-button-row">
-                <div class="example-flex-container">
-                    <div class="example-button-container">
-                        <a mat-mini-fab color="primary" aria-label="Modifier" [routerLink]="['edit-rendez-vous',rdv.id]">
-                            <mat-icon>edit</mat-icon>
-                        </a>
-                        
-                        <button mat-icon-button color="warn" aria-label="anuuler" (click)="supprimer(rdv)" >
-                            <mat-icon>remove_circle</mat-icon>anuuler
-                        </button>
-                    </div>
-                    
-                </div>
+              <a mat-button  aria-label="Verifier" (click)="verifier(rdv)">
+                Verifier
+              </a>
+              <a mat-icon-button color="warn" aria-label="anuuler" (click)="supprimer(rdv)" >
+                <mat-icon>remove_circle</mat-icon> rejeter
+              </a>
             </div>
-            
-        </td>
-      </ng-container>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
-      
-    </table>
-  </div>
+    <mat-tab label="Rendez-vous validés">
+      <div class="mat-elevation-z8" >
+
+        <div style="display: flex;  flex-wrap: wrap;">
+          <div class="card" *ngFor="let rdv of rdvs_verif">
+            <h3 class="card-header"><strong>Rendez-vous {{rdv.id}}</strong> </h3>
+            <div class="card-body">
+              <h3 class="card-title"><strong>Patient: </strong> {{rdv.patient.nom}} {{rdv.patient.prenom}}</h3>
+              <h3 class="card-title"><strong>Medecin: </strong> {{rdv.medecin.nom}} {{rdv.medecin.prenom}}</h3>
+              <h4 class="card-title"><strong>Maladie: </strong> {{rdv.maladie}} </h4>
+              <h4 class="card-title"><strong>Date: </strong> {{rdv.date}} {{rdv.time}}</h4>
+              <p class="card-text"><strong>Détails: </strong> {{rdv.detail}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+    
+</body>

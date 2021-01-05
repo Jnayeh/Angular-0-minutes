@@ -1,14 +1,8 @@
+<body>
+    <app-medecin-paging ></app-medecin-paging>
 
-<div *ngIf="!visible"  class="container-fluid rounded">
-    <h1>consultaions</h1>
-    <app-list-consultations></app-list-consultations>
-    <div class="form-row">
-        <div class="col-md-12 mb-3"></div>
-    </div>
-</div>
-
-<div class="mat-elevation-z8">
-    <div class="wrapper">
+<div class="mat-elevation-z8 ">
+    <div class="wrapper card">
         
         <div class="container rounded">
 
@@ -56,9 +50,18 @@
     </div>
     </div>
 
+    <div *ngIf="!visible"  class="container-fluid rounded ">
+        <h1>consultaions</h1>
+        <app-list-consultations></app-list-consultations>
+        <div class="form-row">
+            <div class="col-md-12 mb-3"></div>
+        </div>
+    </div>
+
     <div class="mat-elevation-z8" style="text-align: center;">
         <div class="container rounded">
             {{message}}
         </div>
         
     </div>
+</body>

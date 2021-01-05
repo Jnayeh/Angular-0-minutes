@@ -21,6 +21,7 @@ export class AddConsultationComponent implements OnInit {
   visible=true;
   consult_id;
   dossier_id;
+  med_id: any;
   
 
   constructor(
@@ -31,77 +32,77 @@ export class AddConsultationComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.med_id = this.activatedRoute.snapshot.params["id"] ;
     this.dossier_id = this.activatedRoute.snapshot.params["dossier_id"] ;
     this.consult_id = this.activatedRoute.snapshot.params["consult_id"] ;
     console.log("id:",this.dossier_id);
     console.log("consultation_id:",this.consult_id);
 
     // Medecin ID FROM URL
-    this.findMedById(1);
-
-    
+    this.findMedById(this.med_id);
     this.findDossierById(this.dossier_id);
       console.log(this.dossier_id);
       if(this.consult_id !== null){
         this.findConsultById(this.consult_id);
       }
 
-  }
+    }
        
-        findMedById(id){
-            if(id !== null){
-              this.medecinService.findById(id).subscribe(res => {
-                this.consultation.medecinConsult = res;
-              }, err => {
-                console.log(err);
-              });
-            }
-          }
+    findMedById(id){
+        if(id !== null){
+          this.medecinService.findById(id).subscribe(res => {
+            this.consultation.medecinConsult = res;
+          }, err => {
+            console.log(err);
+          });
+        }
+      }
 
-        findDossierById(id){
-          this.dossierService.getAll()
-            .subscribe(data => {
-              this.dossiers = data;
-              for (let r of this.dossiers){
-                if (r.id==id){
-                  this.consultation.dossier=r;
-                  console.log("Dossier:",this.consultation.dossier);
-                  this.consultation.patientC=r.patient;
-                  if (this.consultation.dossier==null){
-                    this.message="Something went wrong"
-                  }
-                }
+    findDossierById(id){
+      this.dossierService.getAll()
+        .subscribe(data => {
+          this.dossiers = data;
+          for (let r of this.dossiers){
+            if (r.id==id){
+              this.consultation.dossier=r;
+              console.log("Dossier:",this.consultation.dossier);
+              this.consultation.patientC=r.patient;
+              if (this.consultation.dossier==null){
+                this.message="Something went wrong"
               }
-            }, err => {
-              console.log(err);
-            });
-          }
-
-          findConsultById(id){
-            this.consultationService.getAll()
-              .subscribe(data => {
-                this.consultations = data;
-                for (let r of this.consultations){
-                  if (r.id==id){
-                    this.visible = false;
-                    this.consultation=r;
-                    console.log("Consultaion_By_ID:",this.consultation);
-                    if (this.consultation.dossier==null){
-                      this.message="Something went wrong"
-                    }
-                  }
-                }
-              }, err => {
-                console.log(err);
-              });
             }
+          }
+        }, err => {
+          console.log(err);
+        });
+      }
+
+    findConsultById(id){
+      this.consultationService.getAll()
+        .subscribe(data => {
+          this.consultations = data;
+          for (let r of this.consultations){
+            if (r.id==id){
+              this.visible = false;
+              this.consultation=r;
+              console.log("Consultaion_By_ID:",this.consultation);
+              if (this.consultation.dossier==null){
+                this.message="Something went wrong"
+              }
+            }
+          }
+        }, err => {
+          console.log(err);
+        });
+      }
 
   ajouter() {
     console.log("consultation:", this.consultation);
     this.consultationService.save(this.consultation).subscribe(res => {
         if (res.succes) {
          this.message=res.message;
-       this.router.navigate(['/edit-dossier',this.dossier_id]);
+         this.router.navigate(['/medecin',this.med_id,'list-dossiers','edit-dossier',this.dossier_id]);
         } else {
           this.message=res.message;
         }
@@ -109,7 +110,6 @@ export class AddConsultationComponent implements OnInit {
         this.message='not effected';
       }
     );
-
   }
 
   
@@ -117,7 +117,7 @@ export class AddConsultationComponent implements OnInit {
     this.consultationService.update(this.consultation).subscribe(res => {
         if (res.succes) {
           this.message=res.message;
-          this.router.navigate(['/edit-dossier',this.dossier_id]);
+          this.router.navigate(['/medecin',this.med_id,'list-dossiers','edit-dossier',this.dossier_id]);
         } else {
           this.message=res.message;
         }
@@ -125,7 +125,6 @@ export class AddConsultationComponent implements OnInit {
         this.message='not effected'
       }
     );
-
   }
 
 }

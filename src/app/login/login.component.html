@@ -11,7 +11,7 @@
 <body>
 
 	<div class="d-flex justify-content-center ">
-		<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top justify-content-center">
 			
             <div class="text-area">
                 <span>0</span>
@@ -22,64 +22,19 @@
                 <span>t</span>
                 <span>e</span>
                 <span>s</span>
-            </div>       
-        </nav>
-		<div class="card">
-			<div class="card-header">
-				<h3>Sign In</h3>
-			</div>
-				<div class="card-body">
-					<!--form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" class="form-control" formControlName="username" placeholder="username" >
-						
-						</div>
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" class="form-control" formControlName="password" placeholder="password" >
-						</div>
-						
-						<div class="form-group text-center">
-							<button  class="btn login_btn">Login <i class='fas fa-sign-in-alt'></i></button>
-						</div>
-					</form-->
-					<form>
+			</div> 
+			
+		</nav>
+		
+			<mat-tab-group mat-align-tabs="center">
+				<mat-tab label="Connexion Patient">
+					<app-login-patient ></app-login-patient>
+				</mat-tab>
+				<mat-tab label="Connexion Medecin">
+					<app-login-medecin ></app-login-medecin>
+				</mat-tab>
+			  </mat-tab-group>
 
-                        <div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" [(ngModel)]="person.username" name="username"  >
-						
-                        </div>
-                        
-                        <div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" [(ngModel)]="person.password" name="password"  >
-                        </div>
-                        
-                        <div class="form-group text-center">
-							<button label="se connecter" (click)="authenticate()">se connecter</button>
-                        </div>
-                        
-                    </form>
-				</div>
-				
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Don't have an account?<a [routerLink]="['/creerCompte']">Sign Up</a>
-				</div>
-				
-            </div>
-				
-			</div>
 	</div>
 </body>
 </html>

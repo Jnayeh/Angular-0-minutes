@@ -1,107 +1,115 @@
-<div class="mat-elevation-z8">
-<div class="wrapper">
-    <div class="container rounded">
-        <form  class="was-validated">
-            <div class="form-row">
-                <div class="form-group " class="col-md-4 mb-3">
-                    <label>Nom</label>
-                    <input type="text" class="form-control" placeholder="Quel est votre nom ?" [(ngModel)]="patient.nom" name="nom" #nom="ngModel" required size="30">
-                    <div *ngIf="nom.invalid && ( nom.touched || nom.dirty )" class="alert alert-danger"> Le nom est obligatoire </div>
-                </div>
-                <div class="form-group "class="col-md-4 mb-3">
-                    <label>Prénom</label>
-                    <input type="text" class="form-control" placeholder="Quel est votre prénom ?" [(ngModel)]="patient.prenom" name="prenom" #prenom="ngModel" required size="30">
-                    <div *ngIf="prenom.invalid && ( prenom.touched || prenom.dirty )" class="alert alert-danger"> Le prénom est obligatoire </div>
-                </div>
-                <div class="form-group " class="col-md-4 mb-3">
-                    <label>Nom utilisateur</label>
-                    <input type="text" class="form-control" size="30" placeholder="Quel est votre username ?" [(ngModel)]="patient.username" name="username" #username="ngModel" required>
-                    <div *ngIf="username.invalid && ( username.touched || username.dirty )"  class="alert alert-danger"> Taper username S.V.P </div>
-                </div>
-            </div>
-            
-            <!--div class="form-row">
-                <div class="form-group " class="col-md-5 mb-3">
-                    <label>Nom</label>
-                    <input type="text" class="form-control" placeholder="Quel est votre nom ?" [(ngModel)]="patient.nom" name="nom" #nom="ngModel" required size="30">
-                    <div *ngIf="nom.invalid && ( nom.touched || nom.dirty )" class="alert alert-danger"> Le nom est obligatoire </div>
-                </div>
-
-                <div class="form-group "class="col-md-2 mb-3"></div>
-                
-                <div class="form-group " class="col-md-5 mb-3">
-                    <label>Nom utilisateur</label>
-                    <input type="text" class="form-control" size="30" placeholder="Quel est votre username ?" [(ngModel)]="patient.username" name="username" #username="ngModel" required>
-                    <div *ngIf="username.invalid && ( username.touched || username.dirty )"  class="alert alert-danger"> Taper username S.V.P </div>
-                </div>
-            </div-->
-            
-            <div class="form-group">
-                <label>Adresse</label>
-                <input type="text"  class="form-control" type="text" size="30" placeholder="Quel est votre adresse ?" [(ngModel)]="patient.adresse" name="adresse" #adresse="ngModel" required>
-                <div  *ngIf="adresse.invalid && ( adresse.touched || adresse.dirty )" class="alert alert-danger"> L'adresse est obligatoire </div>
-            </div>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" size="30" placeholder="Quel est votre email ?"  [(ngModel)]="patient.email" #email="ngModel" required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                
-                <div *ngIf="email.invalid && ( email.touched || email.dirty )"> 
-                    <div *ngIf="email.errors.pattern " class="alert alert-warning"> L'email doit sous la forme *****@****.***  </div>
-                    <div  *ngIf="email.errors.required" class="alert alert-danger"> L'email est obligatoire </div>
-                </div>
-            </div>
-            <div class="form-row"[hidden]="!visible">
-                <div  class="col-md-2 mb-3"></div>
-                <div class="form-group " class="col-md-3 mb-3">
-                    <label>mot de passe</label>
-                    <input class="form-control" type="password" size="30" [(ngModel)]="patient.password" name="mdp"  #pwd1="ngModel" required pattern="[a-z0-9A-Z]{6,}$">
-                    <div *ngIf="pwd1.invalid && ( pwd1.touched || pwd1.dirty )" class="alert alert-danger">Le mot de passe est obligatoire </div>
-                </div>
-                <div  class="col-md-2 mb-3"></div>
-                <div class="form-group col-md-3 mb-3">
-                    <label>confirmer mot de passe</label>
-                    <input class="form-control" type="password" size="30" [(ngModel)]="confirmPwd" name="confirmmdp"  #pwd2="ngModel" pattern="{{pwd1.value}}" [disabled]="pwd1.value==''" required>
-                    <div *ngIf="pwd2.invalid && ( pwd2.touched || pwd2.dirty )" >
-                        <div *ngIf="pwd2.errors.pattern " class="alert alert-warning"> password dosent match </div>
-                        <div *ngIf="pwd2.errors.required " class="alert alert-danger">la confirmation est obligatoire </div>
+<body>
+    <app-patient-paging *ngIf="!visible" ></app-patient-paging>
+    <div style="height: 4vw;"></div>
+    <div class="mat-elevation-z8">
+        <div class="wrapper card">
+            <div class="container rounded ">
+                <form  class="was-validated ">
+                    <div class="form-row">
+                        <div class="form-group " class="col-md-4 mb-3">
+                            <label>Nom</label>
+                            <input type="text" class="form-control" placeholder="Quel est votre nom ?" [(ngModel)]="patient.nom" name="nom" #nom="ngModel" required size="30">
+                            <div *ngIf="nom.invalid && ( nom.touched || nom.dirty )" class="alert alert-danger"> Le nom est obligatoire </div>
+                        </div>
+                        <div class="form-group "class="col-md-4 mb-3">
+                            <label>Prénom</label>
+                            <input type="text" class="form-control" placeholder="Quel est votre prénom ?" [(ngModel)]="patient.prenom" name="prenom" #prenom="ngModel" required size="30">
+                            <div *ngIf="prenom.invalid && ( prenom.touched || prenom.dirty )" class="alert alert-danger"> Le prénom est obligatoire </div>
+                        </div>
+                        <div class="form-group " class="col-md-4 mb-3">
+                            <label>Nom utilisateur</label>
+                            <input type="text" class="form-control" size="30" placeholder="Quel est votre username ?" [(ngModel)]="patient.username" name="username" #username="ngModel" required>
+                            <div *ngIf="username.invalid && ( username.touched || username.dirty )"  class="alert alert-danger"> Taper username S.V.P </div>
+                        </div>
                     </div>
-                </div>
-                <div  class="col-md-1 mb-3"></div>
+                    
+                    <!--div class="form-row">
+                        <div class="form-group " class="col-md-5 mb-3">
+                            <label>Nom</label>
+                            <input type="text" class="form-control" placeholder="Quel est votre nom ?" [(ngModel)]="patient.nom" name="nom" #nom="ngModel" required size="30">
+                            <div *ngIf="nom.invalid && ( nom.touched || nom.dirty )" class="alert alert-danger"> Le nom est obligatoire </div>
+                        </div>
+        
+                        <div class="form-group "class="col-md-2 mb-3"></div>
+                        
+                        <div class="form-group " class="col-md-5 mb-3">
+                            <label>Nom utilisateur</label>
+                            <input type="text" class="form-control" size="30" placeholder="Quel est votre username ?" [(ngModel)]="patient.username" name="username" #username="ngModel" required>
+                            <div *ngIf="username.invalid && ( username.touched || username.dirty )"  class="alert alert-danger"> Taper username S.V.P </div>
+                        </div>
+                    </div-->
+                    
+                    <div class="form-group">
+                        <label>Adresse</label>
+                        <input type="text"  class="form-control" type="text" size="30" placeholder="Quel est votre adresse ?" [(ngModel)]="patient.adresse" name="adresse" #adresse="ngModel" required>
+                        <div  *ngIf="adresse.invalid && ( adresse.touched || adresse.dirty )" class="alert alert-danger"> L'adresse est obligatoire </div>
+                    </div>
+        
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" size="30" placeholder="Quel est votre email ?"  [(ngModel)]="patient.email" #email="ngModel" required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        
+                        <div *ngIf="email.invalid && ( email.touched || email.dirty )"> 
+                            <div *ngIf="email.errors.pattern " class="alert alert-warning"> L'email doit sous la forme *****@****.***  </div>
+                            <div  *ngIf="email.errors.required" class="alert alert-danger"> L'email est obligatoire </div>
+                        </div>
+                    </div>
+                    <div class="form-row"[hidden]="!visible">
+                        <div  class="col-md-2 mb-3"></div>
+                        <div class="form-group " class="col-md-3 mb-3">
+                            <label>mot de passe</label>
+                            <input class="form-control" type="password" size="30" [(ngModel)]="patient.password" name="mdp"  #pwd1="ngModel" required pattern="[a-z0-9A-Z]{6,}$">
+                            <div *ngIf="pwd1.invalid && ( pwd1.touched || pwd1.dirty )" class="alert alert-danger">Le mot de passe est obligatoire </div>
+                        </div>
+                        <div  class="col-md-2 mb-3"></div>
+                        <div class="form-group col-md-3 mb-3">
+                            <label>confirmer mot de passe</label>
+                            <input class="form-control" type="password" size="30" [(ngModel)]="confirmPwd" name="confirmmdp"  #pwd2="ngModel" pattern="{{pwd1.value}}" [disabled]="pwd1.value==''" required>
+                            <div *ngIf="pwd2.invalid && ( pwd2.touched || pwd2.dirty )" >
+                                <div *ngIf="pwd2.errors.pattern " class="alert alert-warning"> password dosent match </div>
+                                <div *ngIf="pwd2.errors.required " class="alert alert-danger">la confirmation est obligatoire </div>
+                            </div>
+                        </div>
+                        <div  class="col-md-1 mb-3"></div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col-md-5 mb-3"></div>
+        
+                        <button *ngIf="visible" 
+                        mat-raised-button color="primary"
+                        label="Ajouter" 
+                        class="col-md-2 mb-3"
+                        (click)="ajouter()" 
+                        size="30" 
+                        [disabled]="nom.invalid || prenom.invalid || adresse.invalid || username.invalid || email.invalid || pwd1.invalid || pwd2.invalid">
+                        SignUp
+                        </button>
+        
+                        <button *ngIf="!visible" 
+                        mat-raised-button color="warn"
+                        class="col-md-2 mb-3"
+                        label="Modifier" 
+                        (click)="modifier()" 
+                        size="30" 
+                        [disabled]="nom.invalid || prenom.invalid || adresse.invalid || username.invalid || email.invalid ">
+                        Modifier
+                        </button>
+                        <div class="col-md-3 mb-3"></div>
+                        <button *ngIf="!visible" mat-icon-button  color="white" aria-label="Remove icon" (click)="supprimer(patient)" >
+                            <mat-icon>remove_circle</mat-icon> Supprimer compte
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-row">
-                <div class="col-md-5 mb-3"></div>
-
-                <button *ngIf="visible" 
-                mat-raised-button color="primary"
-                label="Ajouter" 
-                class="col-md-2 mb-3"
-                (click)="ajouter()" 
-                size="30" 
-                [disabled]="nom.invalid || prenom.invalid || adresse.invalid || username.invalid || email.invalid || pwd1.invalid || pwd2.invalid">
-                Ajouter
-                </button>
-
-                <button *ngIf="!visible" 
-                mat-raised-button color="warn"
-                class="col-md-2 mb-3"
-                label="Modifier" 
-                (click)="modifier()" 
-                size="30" 
-                [disabled]="nom.invalid || prenom.invalid || adresse.invalid || username.invalid || email.invalid ">
-                Modifier
-                </button>
-                <div class="col-md-5 mb-3"></div>
+        </div>
+        </div>
+        
+        
+        <div class="mat-elevation-z8" style="text-align: center;">
+            <div class="container rounded">
+                {{message}}
             </div>
-        </form>
-    </div>
-</div>
-</div>
-
-<div class="mat-elevation-z8" style="text-align: center;">
-    <div class="container rounded">
-        {{message}}
-    </div>
-    
-</div>
+            
+        </div>
+</body>

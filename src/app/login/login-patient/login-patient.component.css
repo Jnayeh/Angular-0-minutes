@@ -1,14 +1,6 @@
 /*li,body{background: url('../assets/login.png') no-repeat center center fixed;}*/
 
-html,body{
-    
-    height: 100vh;
-    background-size: cover;
-    background-position: center center;
-    background-position: fixed;
-    font-family: 'Numans', sans-serif;
-    background-image: url('/assets/4.jpg');
-    }
+
     header{
         height: 100vh;
         opacity: 0.8;
@@ -24,7 +16,7 @@ html,body{
     }
     
     .card{
-    margin:30vh 30vw;
+    margin:5vh 30vw;
     height: 300px;
     margin-bottom: auto;
     width: 400px;

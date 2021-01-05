@@ -1,0 +1,20 @@
+<div *ngIf="token!=null && router.url !=='/patient/' && router.url !=='/login' ">
+    <mat-toolbar class="mat-elevation-z6">
+      <span color="warn"></span>
+          
+          <div class="example-button-container">
+              <a mat-mini-fab color="warn" [routerLink]="['/patient',id]" aria-label="home icon " >
+                <mat-icon>home</mat-icon> 
+              </a>
+            </div>
+            <a mat-button color="warn" disabled >
+              0 MINUTES 
+            </a>
+          <span class="example-spacer"></span>
+          <a mat-button color="warn" [routerLink]="['/patient',id,'list-medecin']">List médecins</a>
+          <a mat-button color="warn" [routerLink]="['/patient',id,'list-rendez-vous']">Rendez vous</a> 
+          <a mat-button color="warn" [routerLink]="['/edit-patient',id]">Modifier profile</a>
+          <a mat-button color="warn" (click)="deconnecter()">Deconnecter</a>
+          
+      </mat-toolbar>
+  </div>

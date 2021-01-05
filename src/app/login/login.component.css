@@ -25,9 +25,9 @@ html,body{
     
     .card{
     margin:30vh 30vw;
-    height: 300px;
+    height: 30px;
     margin-bottom: auto;
-    width: 400px;
+    width: 100%;
     background-color: rgba(0,0,0,0.2) !important;
     }
     
@@ -85,7 +85,7 @@ html,body{
     
 /*animation text (ominutes)*/
 .text-area{
-    padding-left: 40%;
+    
     font-size: 40px;
     font-family: roboto;
     text-transform: uppercase;
@@ -97,6 +97,7 @@ html,body{
     transform: rotate(360deg) scale(0);
     animation: animate 5s forwards;
 }
+
 .text-area span{display: inline-block;}
 .text-area span:nth-of-type(2){animation-delay: .1s;}
 .text-area span:nth-of-type(3){animation-delay: .2s;}
@@ -110,4 +111,10 @@ html,body{
     30%{transform: translate(0,0px) rotate(180deg) scale(1);}
     60%{transform: translate(0,20px) rotate(0deg) scale(.8);}
     100%{transform: translate(0) rotate(0deg) scale(1); opacity: 1;}
+}
+
+.mat-tab-group{
+    margin-top: 10vh;
+    height: 90vh;
+    backdrop-filter: blur(8px);
 }

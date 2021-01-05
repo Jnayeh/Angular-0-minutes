@@ -35,16 +35,17 @@ export class AddMedecinComponent implements OnInit {
     "Pneumologie",
     "Psychiatrie",
     "Radiologie"];
+  id: any;
   
   constructor(private medecinService: MedecinService,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-      const id = this.activatedRoute.snapshot.params["med_id"] ;
-      console.log(id);
-      if(id !== null){
-        this.medecinService.findById(id).subscribe(res => {
+      this.id = this.activatedRoute.snapshot.params["id"] ;
+      console.log("id: ",this.id);
+      if(this.id !== null){
+        this.medecinService.findById(this.id).subscribe(res => {
           this.medecin = res;
           this.visible = false;
           console.log(this.visible);
@@ -58,7 +59,7 @@ export class AddMedecinComponent implements OnInit {
       this.medecinService.save(this.medecin).subscribe(res => {
           if (res.succes) {
            this.message=res.message;
-         this.router.navigate(['/list-medecin']);
+           this.router.navigate(['/login']);
           } else {
             this.message=res.message;
           }
@@ -72,7 +73,7 @@ export class AddMedecinComponent implements OnInit {
       this.medecinService.update(this.medecin).subscribe(res => {
           if (res.succes) {
             this.message=res.message;
-            this.router.navigate(['/list-medecin']);
+            this.router.navigate(['/medecin',this.id]);
           } else {
             this.message=res.message;
           }
@@ -81,6 +82,25 @@ export class AddMedecinComponent implements OnInit {
         }
       );
   
+    }
+
+    public supprimer(medecin){
+      this.medecinService.delete(medecin.id).subscribe(
+        data => {
+          if (data.succes){
+            this.message=data.message;
+            console.log(data.message);
+            localStorage.removeItem('token');
+            this.router.navigate(['/login']);
+          }else{
+            this.message=data.message;
+            console.log(data.message);
+          }
+        }, error1 => {
+          this.message='Opération non effectué';
+          console.log(error1);
+        }
+      );
     }
 
 }

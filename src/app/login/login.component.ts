@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   //patient: Patient = new Patient();
   person: Person = new Person();
+  change= true;
   constructor(
     private authentication : AuthenticationService,
     private router: Router) { }
@@ -19,19 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  authenticate(){
-    this.authentication.authenticate(this.person).subscribe(res => {
-      //console.log('res1' +  res);
-
-      const token = res.headers.get('Authorization');
-      //console.log('res' +  res);
-      //console.log('token' + token);
-      localStorage.setItem('token', token);
-      this.router.navigate(['/home',1]);
-    }, error1 => {
-      console.log(error1.error);
-    });
-
-  }
+  
+  
 // http.cors() security config spring + cors filter
 }

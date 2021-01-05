@@ -43,3 +43,25 @@ table {
   justify-content: center;
   width: 120px;
 }
+
+.image{position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  background: url("/assets/bgg1.jpg");
+      background-size: cover;
+      height: 100vh;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);}
+  .contenu{
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin-left: 20px;
+    margin-right: 20px;
+  }

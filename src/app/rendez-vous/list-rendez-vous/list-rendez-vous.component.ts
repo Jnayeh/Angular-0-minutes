@@ -16,8 +16,8 @@ export class ListRendezVousComponent implements OnInit {
   rdvs: RendezVous[]=[];
   rdv= new RendezVous();
   dataSource: MatTableDataSource<RendezVous>;
-  displayedColumns: string[] = ['id', 'patient','medecin', 'maladie','date', 'time','detail','actions'];
   rdvs_verif: RendezVous[];
+  id: any;
 
   constructor(
     private rdvService: RendezVousService,
@@ -29,6 +29,9 @@ export class ListRendezVousComponent implements OnInit {
     this.rdvService.getAll()
       .subscribe(data => {
         this.rdvs = data;
+        //Med ID from URL
+        this.id=this.activatedRoute.snapshot.params["id"] ;
+        this.rdvs= this.rdvs.filter(rdv=>rdv.medecin.id==this.id);
         this.rdvs_verif=this.rdvs.filter(rdv=>rdv.verified==true);
         this.rdvs=this.rdvs.filter(rdv=>rdv.verified==false);
         console.log("Non verif:",this.rdvs);
@@ -47,6 +50,7 @@ export class ListRendezVousComponent implements OnInit {
     }
   
     public supprimer(rdv){
+      console.log("rrr:",rdv);
           this.rdvService.delete(rdv.id).subscribe(
             data => {
               if (data.succes){

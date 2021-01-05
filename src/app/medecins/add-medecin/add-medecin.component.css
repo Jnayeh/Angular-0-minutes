@@ -1,3 +1,10 @@
+body{
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('/assets/2.jpg');
+    opacity: 0.8;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+}
 .example-container .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
@@ -24,4 +31,23 @@
 
 form{
 width: 100%;
+}
+
+@media (max-width: 700px) {
+  .mat-elevation-z8{
+    margin: 0%  15%;
+    width: 70%;
+  }
+}
+@media (max-width: 600px) {
+  .mat-elevation-z8{
+    margin: 0%  10%;
+    width: 80%;
+  }
+}
+@media (max-width: 500px) {
+  .mat-elevation-z8{
+    margin: 0% 5%;
+    width: 90%;
+  }
 }

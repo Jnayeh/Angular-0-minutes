@@ -14,11 +14,13 @@ import { MatTableModule } from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { from } from 'rxjs';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+
 
 import { ListMedecinsComponent } from './medecins/list-medecins/list-medecins.component';
 import { AdminPagingComponent } from './admin/admin-paging/admin-paging.component';
@@ -35,6 +37,11 @@ import { ListDossiersComponent } from './dossiers/list-dossiers/list-dossiers.co
 import { LoginComponent } from './login/login.component';
 import { LoginPatientComponent } from './login/login-patient/login-patient.component';
 import { LoginMedecinComponent } from './login/login-medecin/login-medecin.component';
+import { PatientPagingComponent } from './paging/patient-paging/patient-paging.component';
+import { MedecinPagingComponent } from './paging/medecin-paging/medecin-paging.component';
+import { ListRendezVousPatientComponent } from './rendez-vous/list-rendez-vous-patient/list-rendez-vous-patient.component';
+import { HomePatientComponent } from './home/home-patient/home-patient.component';
+import { HomeMecedinComponent } from './home/home-mecedin/home-mecedin.component';
 
 
 @NgModule({
@@ -55,6 +62,11 @@ import { LoginMedecinComponent } from './login/login-medecin/login-medecin.compo
     LoginComponent,
     LoginPatientComponent,
     LoginMedecinComponent,
+    PatientPagingComponent,
+    MedecinPagingComponent,
+    ListRendezVousPatientComponent,
+    HomePatientComponent,
+    HomeMecedinComponent,
    
   ],
   imports: [
@@ -71,6 +83,10 @@ import { LoginMedecinComponent } from './login/login-medecin/login-medecin.compo
     MatFormFieldModule,
     MatSelectModule,
     MatDialogModule,
+    MatTabsModule,
+    
+    Ng2SearchPipeModule,
+    
 
     
       BrowserAnimationsModule,

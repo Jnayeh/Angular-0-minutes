@@ -29,8 +29,12 @@ private url = environment.baseUrl + '/medecin';
   public delete(id: string): Observable<any>{
     return this.httpClient.delete(this.url + '/' + id,{ headers: { authorization: this.token } });
   }
+
   public findById(id: string): Observable<Medecin>{
     return this.httpClient.get<Medecin>(this.url + '/' + id,{ headers: { authorization: this.token } });
   }
 
+  public findByUsername(username): Observable<Medecin>{
+    return this.httpClient.get<Medecin>(this.url + '/username/' + username,{ headers: { authorization: this.token } });
+  }
 }

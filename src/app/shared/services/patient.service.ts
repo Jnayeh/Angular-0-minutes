@@ -34,5 +34,7 @@ private url = environment.baseUrl + '/patient';
   public findById(id): Observable<Patient>{
     return this.httpClient.get<Patient>(this.url + '/' + id,{ headers: { authorization: this.token } });
   }
-
+  public findByUsername(username): Observable<Patient>{
+    return this.httpClient.get<Patient>(this.url + '/username/' + username,{ headers: { authorization: this.token } });
+  }
 }

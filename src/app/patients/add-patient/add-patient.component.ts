@@ -16,16 +16,17 @@ export class AddPatientComponent implements OnInit {
   confirmPwd: string;
   visible = true;
   message: any;
+  id: any;
   
   constructor(private patientService: PatientService,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-      const id = this.activatedRoute.snapshot.params["pat_id"] ;
-      console.log(id);
-      if(id !== null){
-        this.patientService.findById(id).subscribe(res => {
+      this.id = this.activatedRoute.snapshot.params["id"] ;
+      console.log(this.id);
+      if(this.id !== null){
+        this.patientService.findById(this.id).subscribe(res => {
           this.patient = res;
           this.visible = false;
           console.log(this.visible);
@@ -41,7 +42,7 @@ export class AddPatientComponent implements OnInit {
       this.patientService.save(this.patient).subscribe(res => {
           if (res.succes) {
            this.message=res.message;
-           this.router.navigate(['/home',1,'list-patient']);
+           this.router.navigate(['/login']);
           } else {
             this.message=res.message;
           }
@@ -58,7 +59,7 @@ export class AddPatientComponent implements OnInit {
       this.patientService.update(this.patient).subscribe(res => {
           if (res.succes) {
             this.message=res.message;
-            this.router.navigate(['/home',1,'list-patient']);
+            this.router.navigate(['/patient',this.id]);
           } else {
             this.message=res.message;
           }
@@ -68,5 +69,25 @@ export class AddPatientComponent implements OnInit {
       );
   
     }
+
+    public supprimer(patient){
+      this.patientService.delete(patient.id).subscribe(
+        data => {
+          if (data.succes){
+            this.message=data.message;
+            console.log(data.message);
+            localStorage.removeItem('token');
+            this.router.navigate(['/login']);
+          }else{
+            this.message=data.message;
+            console.log(data.message);
+          }
+        }, error1 => {
+          this.message='Opération non effectué';
+          console.log(error1);
+        }
+      );
+
+}
 
 }

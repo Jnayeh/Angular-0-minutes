@@ -44,6 +44,7 @@ export class AddRendezVousComponent implements OnInit {
   medecinsparspeciality: any;
   patient_id;
   medecin_id;
+  id: any;
 
   constructor(
     private medecinService:MedecinService,
@@ -52,7 +53,10 @@ export class AddRendezVousComponent implements OnInit {
     private rdvService:RendezVousService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-    ) { }
+    ) {
+      this.id = this.activatedRoute.snapshot.params["id"] ;
+    this.findPatId(this.id);
+     }
 
     findAllRdvs(){
       this.rdvService.getAll()
@@ -72,15 +76,7 @@ export class AddRendezVousComponent implements OnInit {
             console.log(err);
           });
         }
-  public findAllPatients(){
-        this.patientService.getAll()
-          .subscribe(data => {
-            this.patients = data;
-            console.log(this.patients);
-          }, err => {
-            console.log(err);
-          });
-        }
+
     findMedecinsparspeciality(speciality): Medecin[] {
           this.medecinsparspeciality=[];
           for (let et of this.medecins){
@@ -104,22 +100,22 @@ export class AddRendezVousComponent implements OnInit {
             if(id !== null){
               this.patientService.findById(id).subscribe(res => {
                 this.rdv.patient = res;
-                
+                console.log("RES:", res);
               }, err => {
                 console.log(err);
               });
             }
           }
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.params["rendez_vous_id"] ;
+    let rendez_vous_id = this.activatedRoute.snapshot.params["rendez_vous_id"] ;
+
     this.findAllRdvs();
     this.findAllMedecins();
-    this.findAllPatients();
     
 
-      console.log(id);
-      if(id !== null){
-        this.findById(id);
+      console.log(rendez_vous_id);
+      if(rendez_vous_id !== null){
+        this.findById(rendez_vous_id);
       }
      
   }
@@ -143,11 +139,12 @@ export class AddRendezVousComponent implements OnInit {
       });
     }
   ajouter() {
+    
     console.log("rdv:", this.rdv);
     this.rdvService.save(this.rdv).subscribe(res => {
         if (res.succes) {
-         this.message=res.message;
-       this.router.navigate(['/list-rendez-vous']);
+          this.message=res.message;
+          this.router.navigate(['/patient',this.id,'list-rendez-vous']);
         } else {
           this.message=res.message;
         }
@@ -160,10 +157,11 @@ export class AddRendezVousComponent implements OnInit {
 
   
   modifier() {
+    this.rdv.verified=false;
     this.rdvService.update(this.rdv).subscribe(res => {
         if (res.succes) {
           this.message=res.message;
-          this.router.navigate(['/list-rendez-vous']);
+          this.router.navigate(['/patient',this.id,'list-rendez-vous']);
         } else {
           this.message=res.message;
         }

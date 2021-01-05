@@ -1,41 +1,54 @@
-table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  td, th {
-    width: 13%;
-    text-align: center;
-  }
-  a:hover {
-    text-decoration: none;
+body{
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('../../../assets/2.jpg');
+    opacity: 0.8;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
 }
 
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 10%;
+  text-align: center;
+}
+a:hover {
+  text-decoration: none;
+}
+.mat-elevation-z8{
+  backdrop-filter: blur(8px);
+  opacity: 0.8;
+  margin: 2% 10%;
+  width: 80%;
+}
 .mat-header-cell{
-    text-align: center;
-  }
+  text-align: center;
+}
 
 .example-button-row {
-  display: table-cell;
-  width: 490px;
+display: table-cell;
+width: 490px;
 }
 
 .example-button-row .mat-button-base {
-  margin: 8px 8px 8px 0;
+margin: 8px 8px 8px 0;
 }
 
 .example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
 }
 
 .example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
+display: flex;
+justify-content: center;
+width: 120px;
+}
+.card{
+  width: 300px;
+  margin: 1vw;
 }

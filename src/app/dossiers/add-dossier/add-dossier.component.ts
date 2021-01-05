@@ -31,11 +31,12 @@ export class AddDossierComponent implements OnInit {
     patients: Patient[];
 
   ngOnInit(): void {
-    this.dossier_id = this.activatedRoute.snapshot.params["dossier_id"] ;
-    console.log("Doss id:",this.dossier_id);
 
-    // medecin id yji mel url
-    this.med_id=1;
+    this.dossier_id = this.activatedRoute.snapshot.params["dossier_id"] ;
+    
+    this.med_id = this.activatedRoute.snapshot.params["id"] ;
+
+    console.log("Doss id:",this.dossier_id);
 
     if(this.dossier_id != null){
       this.findDossierById(this.dossier_id);
@@ -53,7 +54,9 @@ export class AddDossierComponent implements OnInit {
         for (let patient of data){
           if(patient.rdvs!=[]){
             for (let rdv of patient.rdvs){
-              if ((rdv.medecin.id == this.med_id )&&(rdv.verified)){
+              console.log("rdv_id",rdv.medecin.id);
+              console.log("med_id",this.med_id);
+              if ((rdv.medecin.id == this.med_id )&&(rdv.verified)&&(patient.dossierMedical==null)){
                 this.patients.push(patient);
               }
             }
@@ -107,7 +110,7 @@ export class AddDossierComponent implements OnInit {
        
         } else {
           this.message=res.message;
-       this.router.navigate(['/list-dossiers']);
+          this.router.navigate(['/medecin',this.med_id,'list-dossiers','edit-dossier',this.dossier_id]);
         }
       }, err => {
         this.message='not effected';
@@ -120,7 +123,7 @@ export class AddDossierComponent implements OnInit {
     this.dossierService.update(this.dossier).subscribe(res => {
         if (res.succes) {
           this.message=res.message;
-          this.router.navigate(['/list-dossiers']);
+          this.router.navigate(['/medecin',this.med_id,'list-dossiers']);
         } else {
           this.message=res.message;
         }

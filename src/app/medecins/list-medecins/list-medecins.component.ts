@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Medecin } from 'src/app/shared/model/medecin';
 import { MedecinService } from 'src/app/shared/services/medecin.service';
 
-import {MatTableDataSource} from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,21 +11,21 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ListMedecinsComponent implements OnInit {
   medecins: Medecin[];
-  displayedColumns: string[] = ['id', 'name','username', 'adresse', 'email', 'speciality','actions'];
-  dataSource: MatTableDataSource<Medecin>;
+  
   message: any;
   
   constructor(
     private medecinService: MedecinService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,) { }
+    private activatedRoute: ActivatedRoute,) { this.findAll(); 
+      console.log(this.medecins);}
 
   ngOnInit(): void {
-    this.findAll();
+    
   }
 
-  
-
+  term: string;
+    
   public findAll(){
     this.medecinService.getAll()
       .subscribe(data => {
@@ -53,7 +52,6 @@ export class ListMedecinsComponent implements OnInit {
           console.log(error1);
         }
       );
-
-}
+    }
 
 }

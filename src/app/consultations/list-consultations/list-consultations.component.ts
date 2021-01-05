@@ -13,7 +13,7 @@ import {MatTableDataSource} from '@angular/material/table';
 export class ListConsultationsComponent implements OnInit {
   dataSource: MatTableDataSource<Consultation>;
   message: any;
-  consultaions: Consultation[];
+  consultations: Consultation[];
   consult= new Consultation();
 
   displayedColumns: string[] = ['id', 'patient','medecin','treatment','maladie','details','actions'];
@@ -33,17 +33,17 @@ export class ListConsultationsComponent implements OnInit {
   public findAllconsults(){
     this.consultservice.getAll()
       .subscribe(data => {
-        this.consultaions = data;
-        this.consultaions= this.consultaions.filter(consult=>consult.dossier.id==this.dossier_id)
-        console.log("consultations:",this.consultaions);
+        this.consultations = data;
+        this.consultations= this.consultations.filter(consult=>consult.dossier.id==this.dossier_id)
+        console.log("consultations:",this.consultations);
         console.log("data:",data);
       }, err => {
         console.log(err);
       });
     }
   
-    public supprimer(consultation){
-          this.consultservice.delete(consultation.id).subscribe(
+    public supprimer(id){
+          this.consultservice.delete(id).subscribe(
             data => {
               if (data.succes){
                 this.message=data.message;

@@ -12,29 +12,42 @@ import { ListDossiersComponent } from './dossiers/list-dossiers/list-dossiers.co
 import { AddConsultationComponent } from './consultations/add-consultation/add-consultation.component';
 import { LoginComponent } from './login/login.component';
 import {AuthenticationGuard} from './shared/auth/authentication.guard';
+import { ListRendezVousPatientComponent } from './rendez-vous/list-rendez-vous-patient/list-rendez-vous-patient.component';
+import { HomePatientComponent } from './home/home-patient/home-patient.component';
+import { HomeMecedinComponent } from './home/home-mecedin/home-mecedin.component';
 
 const routes: Routes = [
+  //Admin
+  {path : 'home/list-patient', component: ListPatientsComponent, canActivate: [AuthenticationGuard]},
 
-  {path : 'home/:id/list-patient', component: ListPatientsComponent, canActivate: [AuthenticationGuard]},
   {path : 'list-patient', component: ListPatientsComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-patient/new-patient' , component: AddPatientComponent, canActivate: [AuthenticationGuard]},
-  {path : 'creerCompte' , component: AddPatientComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id', component: HomeComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-patient/edit-patient/:pat_id' , component: AddPatientComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-medecin', component: ListMedecinsComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-medecin/new-medecin' , component: AddMedecinComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-medecin/edit-medecin/:med_id' , component: AddMedecinComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-rendez-vous', component: ListRendezVousComponent, canActivate: [AuthenticationGuard]},
-  {path : 'patient/:pat_id/new-rendez-vous' , component: AddRendezVousComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-rendez-vous/new-rendez-vous' , component: AddRendezVousComponent, canActivate: [AuthenticationGuard]},
-  {path : 'patient/:pat_id/edit-rendez-vous/:rendez_vous_id' , component: AddRendezVousComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/edit-rendez-vous/:rendez_vous_id' , component: AddRendezVousComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/list-dossiers', component: ListDossiersComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/new-dossier' , component: AddDossierComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/edit-dossier/:dossier_id' , component: AddDossierComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/edit-dossier/:dossier_id/new-consultaion' , component: AddConsultationComponent, canActivate: [AuthenticationGuard]},
-  {path : 'home/:id/edit-dossier/:dossier_id/edit-consultation/:consult_id' , component: AddConsultationComponent, canActivate: [AuthenticationGuard]},
-  {path : 'login', component: LoginComponent }
+
+  {path : 'creerCompteMedecin' , component: AddMedecinComponent},
+  {path : 'creerComptePatient' , component: AddPatientComponent},
+
+  {path : 'edit-patient/:id', component: AddPatientComponent, canActivate: [AuthenticationGuard]},
+  {path : 'edit-medecin/:id', component: AddMedecinComponent, canActivate: [AuthenticationGuard]},
+
+  {path : 'patient/:id', component: HomePatientComponent, canActivate: [AuthenticationGuard]},
+  {path : 'medecin/:id', component: HomeMecedinComponent, canActivate: [AuthenticationGuard]},
+
+  {path : 'patient/:id/list-medecin', component: ListMedecinsComponent, canActivate: [AuthenticationGuard]},
+  
+  {path : 'home/:id/list-medecin/edit-medecin/:med_id', component: AddMedecinComponent, canActivate: [AuthenticationGuard]},
+
+  {path : 'patient/:id/list-rendez-vous', component: ListRendezVousPatientComponent, canActivate: [AuthenticationGuard]},
+  {path : 'medecin/:id/list-rendez-vous', component: ListRendezVousComponent, canActivate: [AuthenticationGuard]},
+
+  {path : 'patient/:id/list-rendez-vous/new-rendez-vous' , component: AddRendezVousComponent, canActivate: [AuthenticationGuard]},
+  {path : 'patient/:id/list-rendez-vous/edit-rendez-vous/:rendez_vous_id' , component: AddRendezVousComponent, canActivate: [AuthenticationGuard]},
+
+  {path : 'medecin/:id/list-dossiers', component: ListDossiersComponent, canActivate: [AuthenticationGuard]},
+  {path : 'medecin/:id/list-dossiers/new-dossier' , component: AddDossierComponent, canActivate: [AuthenticationGuard]},
+  {path : 'medecin/:id/list-dossiers/edit-dossier/:dossier_id' , component: AddDossierComponent, canActivate: [AuthenticationGuard]},
+  {path : 'medecin/:id/list-dossiers/edit-dossier/:dossier_id/new-consultation' , component: AddConsultationComponent, canActivate: [AuthenticationGuard]},
+  {path : 'medecin/:id/list-dossiers/edit-dossier/:dossier_id/edit-consultation/:consult_id' , component: AddConsultationComponent, canActivate: [AuthenticationGuard]},
+  {path : '', component: LoginComponent,  pathMatch: 'full' , canActivate: [AuthenticationGuard]},
+  {path : 'login', component: LoginComponent}
   ];
 
 @NgModule({

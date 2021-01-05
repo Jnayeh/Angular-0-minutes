@@ -1,19 +1,23 @@
+<body>
+    <app-medecin-paging *ngIf="!visible"></app-medecin-paging>
+    <div style="height: 4vw;"></div>
 <div class="mat-elevation-z8">
-    <div class="wrapper">
+    <div class="wrapper card">
         <div class="container rounded">
             <form  class="was-validated">
-                <div>
-                <div class="form-group n">
-                    <label>Nom</label>
-                    <input type="text" class="form-control" placeholder="Quel est votre nom ?" [(ngModel)]="medecin.nom" name="nom" #nom="ngModel" required size="30">
-                    <div *ngIf="nom.invalid && ( nom.touched || nom.dirty )" class="alert alert-danger"> Le nom est obligatoire </div>
-                </div>
-    
-                <div class="form-group pren">
-                    <label>Prénom</label>
-                    <input type="text" class="form-control" placeholder="Quel est votre prénom ?" [(ngModel)]="medecin.prenom" name="prenom" #prenom="ngModel" required size="30">
-                    <div *ngIf="prenom.invalid && ( prenom.touched || prenom.dirty )" class="alert alert-danger"> Le prénom est obligatoire </div>
-                </div>
+                <div class="form-row">
+                    
+                    <div class="form-group " class="col-md-5 mb-3">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" placeholder="Quel est votre nom ?" [(ngModel)]="medecin.nom" name="nom" #nom="ngModel" required size="30">
+                        <div *ngIf="nom.invalid && ( nom.touched || nom.dirty )" class="alert alert-danger"> Le nom est obligatoire </div>
+                    </div>
+                    <div class="form-group "class="col-md-2 mb-3"></div>
+                    <div class="form-group "class="col-md-5 mb-3">
+                        <label>Prénom</label>
+                        <input type="text" class="form-control" placeholder="Quel est votre prénom ?" [(ngModel)]="medecin.prenom" name="prenom" #prenom="ngModel" required size="30">
+                        <div *ngIf="prenom.invalid && ( prenom.touched || prenom.dirty )" class="alert alert-danger"> Le prénom est obligatoire </div>
+                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -78,7 +82,7 @@
                         (click)="ajouter()" 
                         size="30" 
                         [disabled]="nom.invalid || prenom.invalid || adresse.invalid || username.invalid || email.invalid || pwd1.invalid || pwd2.invalid || speciality.invalid">
-                        Ajouter
+                        SignUp
                         </button>
 
                         <button *ngIf="!visible" 
@@ -90,11 +94,16 @@
                         [disabled]="nom.invalid || prenom.invalid || adresse.invalid || username.invalid || email.invalid ">
                         Modifier
                         </button>
-                        <div class="col-md-5 mb-3"></div>
+                        <div class="col-md-3 mb-3"></div>
+                        <button *ngIf="!visible" mat-icon-button  color="white" aria-label="Remove icon" (click)="supprimer(medecin)" >
+                            <mat-icon>remove_circle</mat-icon> Supprimer compte
+                        </button>
                     </div>
-    
             </form>
         </div>
+        <a *ngIf="visible" mat-icon-button  color="success" aria-label="Remove icon" [routerLink]="['/login']" >
+            Retour
+        </a>
     </div>
     </div>
     
@@ -104,3 +113,4 @@
         </div>
         
     </div>
+</body>
